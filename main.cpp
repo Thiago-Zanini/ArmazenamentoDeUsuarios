@@ -2,9 +2,9 @@
 #include <vector>
 #include <fstream>
 #include <limits>
-#include <stdexcept>
 #include "conta.h"
 
+//força ao usuario colocar um numero sem ser letras
 void retry(int& x) {
 	while (!(std::cin >> x)){
 		std::cin.clear();
@@ -13,6 +13,7 @@ void retry(int& x) {
 	}
 }
 
+	//verificar para ver se existi o nome no mine.txt
 	bool encontrar(const std::string& local, std::string& nome) {
 		std::ifstream armazenar2(local);
 		std::string procura;
@@ -42,16 +43,15 @@ int main() {
 
 	bool enc = encontrar(local, nome);
 
-
+	//cria uma instancia
 	conta cont;
 
+	//se enc for verdadeiro executa o if
 	if (!enc) {
 		std::cout << "coloque sua idade \n";
 		bool enc = encontrar(local, nome);
 		retry(idade);
-			if (!enc) {
-				cont.arquivoA(local, nome, idade);
-			}
+		cont.arquivoA(local, nome, idade);
 	}
 	else {
 		std::cout << "o nome " << nome << " já existe \n";
